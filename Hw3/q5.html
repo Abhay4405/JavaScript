@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Customer Name:
+    <input type="text" name="" id="customer_name" /><br />
+    Product:
+    <input type="text" name="" id="product" /><br />
+    Address:
+    <input type="text" name="" id="address" /><br />
+    <button id="btn">Submit</button>
+
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        const customer_name = document.getElementById("customer_name").value;
+        const product = document.getElementById("product").value;
+        const address = document.getElementById("address").value;
+        const customer_nameReg = /^[A-Za-z\s]+$/;
+        const productReg = /^[0-9]/;
+        const addressReg = /^[a-z0-9] +[a-z]+[a-z]$/;
+        if (!customer_nameReg.test(customer_name)) {
+          alert("Enter valid Name");
+        }
+        if (!productReg.test(product)) {
+          alert("Enter valid product");
+        }
+        if (addressReg.length.test(address)) {
+          alert("Enter valid Address");
+        }
+
+        const user = [customer_name,product, address];
+        const existingdata = JSON.parse(localStorage.getItem("data")) || [];
+        existingdata.push(user);
+        localStorage.setItem("data", JSON.stringify(existingdata));
+
+        alert("Data saved successfully");
+        
+      });
+    </script>
+  </body>
+</html>
+

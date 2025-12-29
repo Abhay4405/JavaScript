@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Example</title>
+</head>
+<body>
+
+    <button id="addToCart">Add to Cart</button>
+
+    <script>
+        const btn = document.getElementById('addToCart');
+
+        btn.addEventListener("click", function() {
+
+            // 1. Pehle se count localStorage me hai kya?
+            let count = localStorage.getItem("cartCount");
+
+            // 2. Agar count nahi mila → 0 set kar do
+            if (!count) {
+                count = 0;
+            }
+
+            // 3. Count ko number me convert karo
+            count = Number(count);
+
+            // 4. Cart me item add → count +1
+            count++;
+
+            // 5. New count ko wapas local storage me save karo
+            localStorage.setItem("cartCount", count);
+
+            // 6. Alert dikhao
+            alert("Items in cart: " + count);
+        });
+    </script>
+
+</body>
+</html>

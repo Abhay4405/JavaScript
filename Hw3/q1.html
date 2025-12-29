@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="input">
+    <ul>
+    </ul>
+    <button id="button">Submitttte</button>
+
+    <script>
+        const btn = document.getElementById('button');
+        const inp = document.getElementById('input');
+        const ul = document.querySelector('ul');
+
+        btn.addEventListener("click", function(){
+            const li = document.createElement('li');
+            li.textContent = inp.value;
+            ul.appendChild(li);
+
+            localStorage.setItem('input', inp.value);
+        });
+        
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Example</title>
+</head>
+<body>
+
+    <button id="addToCart">Add to Cart</button>
+    <button id="resetCart">Reset Cart</button>
+
+    <script>
+        const addBtn = document.getElementById('addToCart');
+        const resetBtn = document.getElementById('resetCart');
+
+        // ADD TO CART CODE
+        addBtn.addEventListener("click", function() {
+            let count = localStorage.getItem("cartCount");
+
+            if (!count) {
+                count = 0;
+            }
+
+            count = Number(count);
+            count++;
+
+            localStorage.setItem("cartCount", count);
+
+            alert("Items in cart: " + count);
+        });
+
+        // RESET CART CODE
+        resetBtn.addEventListener("click", function() {
+            localStorage.removeItem("cartCount");  // removes the count
+            alert("Cart reset!");
+        });
+    </script>
+
+</body>
+</html>

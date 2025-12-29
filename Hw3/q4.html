@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Form</title>
+</head>
+<body>
+
+Product Name:
+<input type="text" id="product_name" /><br />
+
+Price:
+<input type="number" id="price" /><br />
+
+Quantity:
+<input type="number" id="quantity" /><br />
+
+<button id="btn">Submit</button>
+
+<script>
+  document.getElementById("btn").addEventListener("click", () => {
+
+    const product_name = document.getElementById("product_name").value.trim();
+    const price = document.getElementById("price").value;
+    const quantity = document.getElementById("quantity").value;
+
+    const productNameReg = /^[A-Za-z\s]+$/;
+    const numberReg = /^[0-9]+$/;
+
+    // Validation
+    if (!productNameReg.test(product_name)) {
+      alert("Enter valid Product Name");
+      return;
+    }
+
+    if (!numberReg.test(price) || price <= 0) {
+      alert("Enter valid Price");
+      return;
+    }
+
+    if (!numberReg.test(quantity) || quantity <= 0) {
+      alert("Enter valid Quantity");
+      return;
+    }
+
+    // Object banaya (best practice)
+    const product = {
+      product_name,
+      price,
+      quantity
+    };
+
+    // LocalStorage
+    const existingData = JSON.parse(localStorage.getItem("products")) || [];
+    existingData.push(product);
+    localStorage.setItem("products", JSON.stringify(existingData));
+
+    alert("Product saved successfully ✅");
+  });
+</script>
+
+</body>
+</html>
